@@ -27,3 +27,5 @@ add_custom_command(TARGET helloworld POST_BUILD
         ${CMAKE_SOURCE_DIR}/compile_commands.json
     COMMENT "Linking compile_commands.json for clangd"
 )
+
+add_executable(test_log ./test/test_log.cpp)
