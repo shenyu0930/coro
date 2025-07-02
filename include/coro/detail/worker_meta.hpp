@@ -3,7 +3,6 @@
 #include <coro/config/coro.hpp>
 #include <coro/detail/thread_safe.hpp>
 #include <coro/detail/spsc_cursor.hpp>
-#include <iterator>
 #include <liburing.h>
 
 #include <array>
@@ -69,7 +68,44 @@ struct worker_meta final {
     void init(unsigned int io_uring_entries);
 
     // deinit worker_meta
-    void deinit();
+    void deinit() noexcept;
+
+    // add task
+    void co_spwan_unsafe(std::coroutine_handle<> handle) noexcept;
+
+    // add task
+    void co_spawn_safe_msg_ring(std::coroutine_handle<> handle) noexcept;
+
+    // add task
+    void co_spawn_auto(std::coroutine_handle<> handle) noexcept;
+
+    // resume a task
+    void work_once();
+
+    // use io_uring_enter
+    void check_submission_threshold() noexcept;
+
+    // poll submission entries
+    void poll_submission() noexcept;
+
+    // poll completion entries
+    uint32_t poll_completion() noexcept;
+
+    // push task to reap_swap
+    void forward_task(std::coroutine_handle<> handle) noexcept;
+
+    // handle a cq_entry
+    void handle_cq_entry(struct io_uring_cqe *cqe) noexcept;
+
+    // handle user data
+    void handle_reserved_user_data(uint64_t user_data) noexcept;
+
+    explicit worker_meta() noexcept = default;
+
+    ~worker_meta() noexcept = default;
+
+    // check if adequate sqes are inited
+    [[nodiscard]] bool check_init(unsigned except_sqring_size) const noexcept;
 };
 
 }
