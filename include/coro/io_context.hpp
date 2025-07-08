@@ -32,10 +32,13 @@ private:
     void init();
 
     // deinit io_context
-    void deinit();
+    void deinit() noexcept;
 
     // runs on host_thread_
     void run();
+
+    // start 
+    void start();
 
     // add task
     friend void co_spawn(task<void>&& entrance) noexcept;
