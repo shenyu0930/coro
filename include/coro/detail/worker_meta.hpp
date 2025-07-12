@@ -71,7 +71,7 @@ struct worker_meta final {
     void deinit() noexcept;
 
     // add task
-    void co_spwan_unsafe(std::coroutine_handle<> handle) noexcept;
+    void co_spawn_unsafe(std::coroutine_handle<> handle) noexcept;
 
     // add task
     void co_spawn_safe_msg_ring(std::coroutine_handle<> handle) noexcept;

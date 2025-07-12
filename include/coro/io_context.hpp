@@ -75,9 +75,6 @@ public:
         will_stop_ = true;
     }
 
-    // runs on host_thread_
-    void start();
-
     // join
     void join() {
         if(host_thread_.joinable()) {
