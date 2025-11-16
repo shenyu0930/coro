@@ -57,3 +57,11 @@ target_link_libraries(ping_pong PRIVATE coro)
 add_executable(echo_server demo/echo_server.cpp)
 target_include_directories(echo_server PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/include)
 target_link_libraries(echo_server PRIVATE coro)
+
+add_executable(when_all_any tests/when_all_any.cpp)
+target_include_directories(when_all_any PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/include)
+target_link_libraries(when_all_any PRIVATE coro)
+
+add_executable(minimal_test tests/minimal_test.cpp)
+target_include_directories(minimal_test PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/include)
+target_link_libraries(minimal_test PRIVATE coro)

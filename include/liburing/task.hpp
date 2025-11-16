@@ -103,7 +103,8 @@ namespace coro
         using promise_type = Promise<T, nothrow>;
         using handle_t = std::coroutine_handle<promise_type>;
 
-        Task(Task&& other) : handle_t(std::exchange(other.handle_, {})) {}
+        Task(Task&& other) : handle_(std::exchange(other.handle_, {})) {}
+
         Task& operator=(Task&& other) noexcept {
             if (handle_) {
                 handle_.destroy();
