@@ -53,3 +53,7 @@ target_link_libraries(delay_and_print PRIVATE coro)
 add_executable(ping_pong tests/ping_pong.cpp)
 target_include_directories(ping_pong PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/include)
 target_link_libraries(ping_pong PRIVATE coro)
+
+add_executable(echo_server demo/echo_server.cpp)
+target_include_directories(echo_server PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/include)
+target_link_libraries(echo_server PRIVATE coro)
